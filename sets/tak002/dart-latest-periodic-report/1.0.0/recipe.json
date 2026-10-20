@@ -1,0 +1,440 @@
+{
+  "schemaVersion": 1,
+  "name": "DART 회사별 최신 정기보고서 PDF 받기",
+  "startUrl": "https://dart.fss.or.kr/dsab001/main.do",
+  "variables": [
+    {
+      "id": "회사명",
+      "name": "회사명",
+      "source": {
+        "kind": "excel",
+        "column": "회사명"
+      }
+    }
+  ],
+  "entryBlock": "main",
+  "blocks": {
+    "main": [
+      {
+        "id": "s1",
+        "type": "navigate",
+        "url": "https://dart.fss.or.kr/dsab001/main.do",
+        "meta": {
+          "url": "https://dart.fss.or.kr/dsab001/main.do",
+          "pageId": 1,
+          "recordedGapMs": 0
+        }
+      },
+      {
+        "id": "z1",
+        "type": "sleep",
+        "ms": 1000
+      },
+      {
+        "id": "s2",
+        "type": "input",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "css",
+              "value": "#textCrpNm",
+              "score": 95
+            },
+            {
+              "kind": "attr",
+              "value": "input[title=\"회사명/종목코드\"]",
+              "score": 70
+            },
+            {
+              "kind": "css",
+              "value": "#searchArea_crp > div > input",
+              "score": 55
+            },
+            {
+              "kind": "xpath",
+              "value": "/html/body/div[4]/div[2]/div[1]/div[2]/form/div/div[1]/ul/li[1]/div/span/div/input",
+              "score": 40
+            }
+          ],
+          "meta": {
+            "tag": "input",
+            "type": "text",
+            "label": "회사명/종목코드 입력",
+            "name": "textCrpNm"
+          }
+        },
+        "value": "{{회사명}}",
+        "meta": {
+          "url": "https://dart.fss.or.kr/dsab001/main.do",
+          "pageId": 1,
+          "recordedGapMs": 2964
+        }
+      },
+      {
+        "id": "k1",
+        "type": "keypress",
+        "key": "End",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "css",
+              "value": "#textCrpNm",
+              "score": 95
+            },
+            {
+              "kind": "attr",
+              "value": "input[title=\"회사명/종목코드\"]",
+              "score": 70
+            },
+            {
+              "kind": "css",
+              "value": "#searchArea_crp > div > input",
+              "score": 55
+            },
+            {
+              "kind": "xpath",
+              "value": "/html/body/div[4]/div[2]/div[1]/div[2]/form/div/div[1]/ul/li[1]/div/span/div/input",
+              "score": 40
+            }
+          ],
+          "meta": {
+            "tag": "input",
+            "type": "text",
+            "label": "회사명/종목코드 입력",
+            "name": "textCrpNm"
+          }
+        }
+      },
+      {
+        "id": "s3",
+        "type": "click",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "text",
+              "value": {
+                "tag": "li",
+                "text": "{{회사명}}"
+              },
+              "score": 90
+            }
+          ],
+          "meta": {
+            "tag": "div",
+            "text": "삼성전자"
+          }
+        },
+        "meta": {
+          "url": "https://dart.fss.or.kr/dsab001/main.do",
+          "pageId": 1,
+          "recordedGapMs": 634
+        }
+      },
+      {
+        "id": "s4",
+        "type": "select",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "css",
+              "value": "#maxResultsCb",
+              "score": 95
+            },
+            {
+              "kind": "attr",
+              "value": "select[name=\"maxResultsCb\"]",
+              "score": 88
+            },
+            {
+              "kind": "attr",
+              "value": "select[title=\"선택\"]",
+              "score": 70
+            },
+            {
+              "kind": "css",
+              "value": "#contents > div:nth-of-type(4) > div:nth-of-type(1) > span > select",
+              "score": 55
+            },
+            {
+              "kind": "xpath",
+              "value": "/html/body/div[4]/div[2]/div[1]/div[2]/div[4]/div[1]/span/select",
+              "score": 40
+            }
+          ],
+          "meta": {
+            "tag": "select",
+            "label": "선택",
+            "name": "maxResultsCb"
+          }
+        },
+        "value": "100",
+        "label": "100",
+        "meta": {
+          "url": "https://dart.fss.or.kr/dsab001/main.do",
+          "pageId": 1,
+          "recordedGapMs": 713
+        }
+      },
+      {
+        "id": "s5",
+        "type": "click",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "text",
+              "value": {
+                "tag": "a",
+                "text": "검색"
+              },
+              "score": 75
+            },
+            {
+              "kind": "attr",
+              "value": "a[title=\"검색\"]",
+              "score": 70
+            },
+            {
+              "kind": "css",
+              "value": "#searchForm > div > div:nth-of-type(2) > a",
+              "score": 55
+            },
+            {
+              "kind": "xpath",
+              "value": "/html/body/div[4]/div[2]/div[1]/div[2]/form/div/div[2]/a",
+              "score": 40
+            }
+          ],
+          "meta": {
+            "tag": "a",
+            "text": "검색",
+            "label": "검색"
+          }
+        },
+        "meta": {
+          "url": "https://dart.fss.or.kr/dsab001/main.do",
+          "pageId": 1,
+          "recordedGapMs": 720
+        }
+      },
+      {
+        "id": "w1",
+        "type": "wait",
+        "condition": {
+          "kind": "exists",
+          "target": {
+            "framePath": [],
+            "candidates": [
+              {
+                "kind": "xpath",
+                "value": "(//table//tbody//tr//a[contains(.,'사업보고서') or contains(.,'반기보고서') or contains(.,'분기보고서')])[1]",
+                "score": 90
+              }
+            ],
+            "meta": {}
+          }
+        },
+        "timeoutMs": 15000
+      },
+      {
+        "id": "e1",
+        "type": "extract",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "xpath",
+              "value": "(//table//tbody//tr//a[contains(.,'사업보고서') or contains(.,'반기보고서') or contains(.,'분기보고서')])[1]",
+              "score": 90
+            }
+          ],
+          "meta": {}
+        },
+        "saveAs": "보고서명"
+      },
+      {
+        "id": "e2",
+        "type": "extract",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "xpath",
+              "value": "(//table//tbody//tr//a[contains(.,'사업보고서') or contains(.,'반기보고서') or contains(.,'분기보고서')])[1]/ancestor::tr/td[5]",
+              "score": 90
+            }
+          ],
+          "meta": {}
+        },
+        "saveAs": "접수일"
+      },
+      {
+        "id": "s6",
+        "type": "click",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "xpath",
+              "value": "(//table//tbody//tr//a[contains(.,'사업보고서') or contains(.,'반기보고서') or contains(.,'분기보고서')])[1]",
+              "score": 90
+            }
+          ],
+          "meta": {
+            "tag": "a",
+            "text": "최신 정기보고서"
+          }
+        },
+        "meta": {
+          "url": "https://dart.fss.or.kr/dsab001/main.do",
+          "pageId": 1,
+          "recordedGapMs": 1835
+        }
+      },
+      {
+        "id": "w2",
+        "type": "wait",
+        "condition": {
+          "kind": "textVisible",
+          "text": "보 고 서"
+        },
+        "timeoutMs": 15000
+      },
+      {
+        "id": "c1",
+        "type": "screenshot",
+        "fileName": "{{회사명}}_최신정기보고서.png",
+        "fullPage": false
+      },
+      {
+        "id": "s7",
+        "type": "click",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "text",
+              "value": {
+                "tag": "button",
+                "text": "다운로드"
+              },
+              "score": 75
+            },
+            {
+              "kind": "css",
+              "value": "#header > div:nth-of-type(2) > div:nth-of-type(2) > button:nth-of-type(2)",
+              "score": 55
+            },
+            {
+              "kind": "xpath",
+              "value": "/html/body/div[3]/div/div[1]/div[2]/div[2]/button[2]",
+              "score": 40
+            }
+          ],
+          "meta": {
+            "tag": "button",
+            "text": "다운로드"
+          }
+        },
+        "meta": {
+          "url": "https://dart.fss.or.kr/dsaf001/main.do",
+          "pageId": 2,
+          "recordedGapMs": 2715
+        }
+      },
+      {
+        "id": "s8",
+        "type": "download",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "xpath",
+              "value": "(//tr[*[1][normalize-space()='[삼성전자]반기보고서(2026.08.14).pdf']]/*[2]//a)[1]",
+              "score": 68
+            },
+            {
+              "kind": "css",
+              "value": "body > div > div:nth-of-type(3) > div > div > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > a",
+              "score": 55
+            },
+            {
+              "kind": "xpath",
+              "value": "/html/body/div/div[3]/div/div/table/tbody/tr[1]/td[2]/a",
+              "score": 40
+            }
+          ],
+          "meta": {
+            "tag": "a"
+          }
+        },
+        "meta": {
+          "url": "https://dart.fss.or.kr/pdf/download/main.do",
+          "pageId": 3,
+          "recordedGapMs": 1582
+        }
+      },
+      {
+        "id": "s9",
+        "type": "click",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "text",
+              "value": {
+                "tag": "button",
+                "text": "닫기"
+              },
+              "score": 75
+            },
+            {
+              "kind": "css",
+              "value": "body > div > div:nth-of-type(4) > button",
+              "score": 55
+            },
+            {
+              "kind": "xpath",
+              "value": "/html/body/div/div[4]/button",
+              "score": 40
+            }
+          ],
+          "meta": {
+            "tag": "button",
+            "text": "닫기"
+          }
+        },
+        "meta": {
+          "url": "https://dart.fss.or.kr/pdf/download/main.do",
+          "pageId": 3,
+          "recordedGapMs": 2683
+        }
+      },
+      {
+        "id": "s10",
+        "type": "closeTab",
+        "meta": {
+          "url": "https://dart.fss.or.kr/pdf/download/main.do",
+          "pageId": 3,
+          "recordedGapMs": 5
+        }
+      },
+      {
+        "id": "s11",
+        "type": "closeTab",
+        "meta": {
+          "url": "https://dart.fss.or.kr/dsaf001/main.do",
+          "pageId": 2,
+          "recordedGapMs": 808
+        }
+      }
+    ]
+  },
+  "loop": {
+    "onRowError": "skip"
+  }
+}

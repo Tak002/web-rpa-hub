@@ -1,0 +1,61 @@
+name: 세트 제출
+description: web-rpa 에서 내보낸 .wrset 파일을 첨부해 허브에 올려 달라고 요청합니다. 관리자가 검사한 뒤 PR 로 옮깁니다.
+title: "[세트 제출] "
+labels: ["세트제출"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **이 이슈와 첨부 파일은 누구나 볼 수 있게 바로 공개됩니다.** 올리기 전에 [허브 정책](https://github.com/Tak002/web-rpa-hub/blob/main/POLICY.md)을 읽고, 개인정보·고객 데이터가 없는지 다시 확인해 주세요.
+        GitHub 사용에 익숙하다면 [PR 로 올리는 방법](https://github.com/Tak002/web-rpa-hub/blob/main/CONTRIBUTING.md)이 더 빠릅니다.
+  - type: input
+    id: name
+    attributes:
+      label: 세트 이름
+      description: manifest.json 의 name 과 같게 적어 주세요.
+      placeholder: 예) DART 회사별 최신 정기보고서 PDF 받기
+    validations:
+      required: true
+  - type: input
+    id: set-id
+    attributes:
+      label: 세트 id 와 버전
+      description: manifest.json 의 id 와 version. id 는 "게시자/이름" (소문자·숫자·하이픈)입니다.
+      placeholder: 예) mygithubname/dart-latest-periodic-report 1.0.0
+    validations:
+      required: true
+  - type: textarea
+    id: file
+    attributes:
+      label: 세트 파일 (.wrset)
+      description: |
+        web-rpa 의 [세트로 내보내기]로 만든 파일을 여기에 끌어다 놓아 주세요.
+        GitHub 이 .wrset 첨부를 받지 않으면 파일 이름 끝에 .zip 을 붙여서(예: 내세트.wrset.zip) 올려 주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: about
+    attributes:
+      label: 설명
+      description: 무엇을 하는 세트인지, 어떤 사이트에 접속하는지, 예시로 실행해 본 결과를 짧게 적어 주세요.
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: 확인
+      options:
+        - label: 정리 후 남은 값(변수로 바꾸지 않은 입력값, 고정값, 화면 글자)을 모두 확인했다
+          required: true
+        - label: 예시 데이터는 공개 정보나 합성값이다. 실제 고객 데이터가 아니다
+          required: true
+        - label: 예시로 실행해 성공했고 expected.json 이 있다
+          required: true
+        - label: 사이트 이용약관과 robots.txt 를 확인했다. 공식 API 가 있으면 README 에 적었다
+          required: true
+        - label: 캡처와 영상에 개인정보가 없다
+          required: true
+        - label: 이 세트를 공개할 권리가 있다 (업무상 만든 것이면 회사 허락을 받았다)
+          required: true
+        - label: 제출한 내용이 바로 공개된다는 것을 안다
+          required: true

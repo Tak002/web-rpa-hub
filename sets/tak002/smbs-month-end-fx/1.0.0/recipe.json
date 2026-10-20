@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "name": "서울외국환중개 통화별 직전 월 월말 환율",
+  "startUrl": "http://www.smbs.biz/ExRate/MonLastStdExRate.jsp",
+  "variables": [
+    {
+      "id": "통화",
+      "name": "통화",
+      "source": {
+        "kind": "excel",
+        "column": "통화"
+      }
+    }
+  ],
+  "entryBlock": "main",
+  "blocks": {
+    "main": [
+      {
+        "id": "s1",
+        "type": "navigate",
+        "url": "http://www.smbs.biz/ExRate/MonLastStdExRate.jsp",
+        "meta": {
+          "url": "http://www.smbs.biz/ExRate/MonLastStdExRate.jsp",
+          "pageId": 1,
+          "recordedGapMs": 0
+        }
+      },
+      {
+        "id": "s2",
+        "type": "select",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "attr",
+              "value": "select[name=\"tongwha_code\"]",
+              "score": 88
+            },
+            {
+              "kind": "attr",
+              "value": "select[title=\"통화선택 리스트\"]",
+              "score": 70
+            },
+            {
+              "kind": "css",
+              "value": "#frm_SearchDate > div:nth-of-type(1) > table > tbody > tr:nth-of-type(1) > td > select",
+              "score": 55
+            },
+            {
+              "kind": "xpath",
+              "value": "/html/body/div/div[4]/div[2]/div/form/div[1]/table/tbody/tr[1]/td/select",
+              "score": 40
+            }
+          ],
+          "meta": {
+            "tag": "select",
+            "label": "통화선택 리스트",
+            "name": "tongwha_code"
+          }
+        },
+        "value": "{{통화}}",
+        "meta": {
+          "url": "http://www.smbs.biz/ExRate/MonLastStdExRate.jsp",
+          "pageId": 1,
+          "recordedGapMs": 1844
+        }
+      },
+      {
+        "id": "s3",
+        "type": "select",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "attr",
+              "value": "select[name=\"StrSch_sMonth\"]",
+              "score": 88
+            },
+            {
+              "kind": "attr",
+              "value": "select[title=\"시작 월 입력\"]",
+              "score": 70
+            },
+            {
+              "kind": "css",
+              "value": "#frm_SearchDate > div:nth-of-type(1) > table > tbody > tr:nth-of-type(2) > td > p:nth-of-type(2) > select:nth-of-type(2)",
+              "score": 55
+            },
+            {
+              "kind": "xpath",
+              "value": "/html/body/div/div[4]/div[2]/div/form/div[1]/table/tbody/tr[2]/td/p[2]/select[2]",
+              "score": 40
+            }
+          ],
+          "meta": {
+            "tag": "select",
+            "label": "시작 월 입력",
+            "name": "StrSch_sMonth"
+          }
+        },
+        "value": "01",
+        "label": "01",
+        "meta": {
+          "url": "http://www.smbs.biz/ExRate/MonLastStdExRate.jsp",
+          "pageId": 1,
+          "recordedGapMs": 821
+        }
+      },
+      {
+        "id": "s4",
+        "type": "click",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "css",
+              "value": "#frm_SearchDate > p:nth-of-type(2) > a:nth-of-type(2)",
+              "score": 55
+            },
+            {
+              "kind": "xpath",
+              "value": "/html/body/div/div[4]/div[2]/div/form/p[2]/a[2]",
+              "score": 40
+            }
+          ],
+          "meta": {
+            "tag": "a"
+          }
+        },
+        "meta": {
+          "url": "http://www.smbs.biz/ExRate/MonLastStdExRate.jsp",
+          "pageId": 1,
+          "recordedGapMs": 828
+        }
+      },
+      {
+        "id": "w1",
+        "type": "wait",
+        "condition": {
+          "kind": "any",
+          "conditions": [
+            {
+              "kind": "exists",
+              "target": {
+                "framePath": [],
+                "candidates": [
+                  {
+                    "kind": "xpath",
+                    "value": "(//table//tr[td[1][contains(.,'{{sys:year}}.')]])[{{sys:month:-1}}]",
+                    "score": 90
+                  }
+                ],
+                "meta": {}
+              }
+            },
+            {
+              "kind": "textVisible",
+              "text": "고시하지 않습니다"
+            }
+          ]
+        },
+        "timeoutMs": 15000
+      },
+      {
+        "id": "b1",
+        "type": "branch",
+        "condition": {
+          "kind": "textVisible",
+          "text": "고시하지 않습니다"
+        },
+        "then": "고시없음",
+        "else": "값읽기"
+      }
+    ],
+    "고시없음": [
+      {
+        "id": "n1",
+        "type": "extract",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "xpath",
+              "value": "//*[contains(text(),'고시하지 않습니다')]",
+              "score": 90
+            }
+          ],
+          "meta": {}
+        },
+        "saveAs": "비고"
+      },
+      {
+        "id": "n2",
+        "type": "screenshot",
+        "fileName": "{{통화}}_고시없음.png",
+        "fullPage": false
+      }
+    ],
+    "값읽기": [
+      {
+        "id": "e0",
+        "type": "extract",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "xpath",
+              "value": "(//table//tr[td[1][contains(.,'{{sys:year}}.')]])[{{sys:month:-1}}]/td[1]",
+              "score": 90
+            }
+          ],
+          "meta": {}
+        },
+        "saveAs": "직전월"
+      },
+      {
+        "id": "e1",
+        "type": "extract",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "xpath",
+              "value": "(//table//tr[td[1][contains(.,'{{sys:year}}.')]])[{{sys:month:-1}}]/td[3]",
+              "score": 90
+            }
+          ],
+          "meta": {}
+        },
+        "saveAs": "직전월_매매기준율"
+      },
+      {
+        "id": "e2",
+        "type": "extract",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "xpath",
+              "value": "(//table//tr[td[1][contains(.,'{{sys:year}}.')]])[last()]/td[1]",
+              "score": 90
+            }
+          ],
+          "meta": {}
+        },
+        "saveAs": "최신_월"
+      },
+      {
+        "id": "e3",
+        "type": "extract",
+        "target": {
+          "framePath": [],
+          "candidates": [
+            {
+              "kind": "xpath",
+              "value": "(//table//tr[td[1][contains(.,'{{sys:year}}.')]])[last()]/td[3]",
+              "score": 90
+            }
+          ],
+          "meta": {}
+        },
+        "saveAs": "최신_매매기준율"
+      },
+      {
+        "id": "p1",
+        "type": "pdf",
+        "fileName": "{{통화}}_월말환율_{{sys:date:YYYYMMDD}}.pdf"
+      }
+    ]
+  },
+  "loop": {
+    "onRowError": "skip"
+  }
+}

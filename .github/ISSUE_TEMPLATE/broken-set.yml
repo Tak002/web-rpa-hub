@@ -1,0 +1,56 @@
+name: 고장 신고
+description: 허브의 세트가 사이트 변화 등으로 동작하지 않을 때 알려 주세요.
+title: "[고장] "
+labels: ["고장신고"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        이 이슈는 공개됩니다. 오류 문구와 캡처에 이름·연락처·고객 정보 같은 개인정보가 없는지 확인해 주세요. 캡처는 꼭 필요할 때만 붙여 주세요.
+  - type: input
+    id: set-id
+    attributes:
+      label: 세트 id
+      placeholder: 예) tak002/dart-latest-periodic-report
+    validations:
+      required: true
+  - type: input
+    id: set-version
+    attributes:
+      label: 세트 버전
+      placeholder: 예) 1.0.0
+    validations:
+      required: true
+  - type: input
+    id: engine-version
+    attributes:
+      label: web-rpa 버전
+      placeholder: 예) 0.2.0
+    validations:
+      required: true
+  - type: input
+    id: step
+    attributes:
+      label: 실패한 스텝
+      description: 실행 리포트의 실패 스텝 설명(블록, 스텝 번호, 스텝 id)을 적어 주세요.
+      placeholder: 예) main 블록 5번 스텝(s3) 클릭
+  - type: textarea
+    id: error
+    attributes:
+      label: 오류 문구
+      description: 실행 리포트에 나온 오류를 그대로 붙여 주세요.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: more
+    attributes:
+      label: 더 알려 줄 것
+      description: 언제부터 안 되는지, 예시 입력으로도 안 되는지, 몇 행 중 몇 행이 실패하는지 등.
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: 확인
+      options:
+        - label: 이 이슈에 개인정보나 고객 정보를 넣지 않았다
+          required: true

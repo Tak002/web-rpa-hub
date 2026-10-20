@@ -1,0 +1,67 @@
+{
+  "format": "web-rpa-set",
+  "formatVersion": 1,
+  "id": "tak002/dart-latest-periodic-report",
+  "name": "DART 회사별 최신 정기보고서 PDF 받기",
+  "version": "1.0.0",
+  "summary": "엑셀의 회사명마다 DART 공시검색에서 가장 최근 정기보고서(사업·반기·분기)를 찾아 보고서명과 접수일을 읽고, 보고서 첫 화면 캡처(PNG)와 보고서 PDF를 받는다.",
+  "author": {
+    "name": "Tak002",
+    "github": "Tak002"
+  },
+  "license": "CC0-1.0",
+  "tags": [
+    "공시",
+    "DART",
+    "정기보고서",
+    "PDF",
+    "다운로드"
+  ],
+  "engine": {
+    "webRpa": ">=0.2.0 <0.3.0",
+    "recipeSchema": 1
+  },
+  "recipe": "recipe.json",
+  "sites": [
+    {
+      "origin": "https://dart.fss.or.kr",
+      "purpose": "공시 검색, 보고서 PDF 다운로드",
+      "login": "none",
+      "officialApi": "https://opendart.fss.or.kr/"
+    }
+  ],
+  "columns": [
+    {
+      "name": "회사명",
+      "required": true,
+      "example": "삼성전자",
+      "help": "DART에 등록된 회사명. 검색창 자동완성 목록에 뜨는 이름과 글자가 같아야 한다.",
+      "personal": false
+    }
+  ],
+  "prompts": [],
+  "attachments": [],
+  "outputs": {
+    "values": [
+      "보고서명",
+      "접수일"
+    ],
+    "files": [
+      "{{회사명}}_최신정기보고서.png",
+      "*.pdf"
+    ]
+  },
+  "risk": [
+    "download"
+  ],
+  "pacing": {
+    "minRowIntervalMs": 3000,
+    "maxRowsPerRun": 50
+  },
+  "verified": {
+    "at": "2026-10-20",
+    "engine": "0.1.0",
+    "result": "3/3",
+    "by": "author"
+  }
+}

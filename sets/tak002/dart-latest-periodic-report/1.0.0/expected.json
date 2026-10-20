@@ -1,0 +1,31 @@
+{
+  "sample": "input/sample.csv",
+  "totals": {
+    "ok": 3,
+    "failed": 0
+  },
+  "rows": {
+    "*": {
+      "status": "ok",
+      "values": {
+        "보고서명": {
+          "regex": "(사업|반기|분기)보고서"
+        },
+        "접수일": {
+          "regex": "^\\d{4}\\.\\d{2}\\.\\d{2}$"
+        }
+      },
+      "files": [
+        {
+          "glob": "*_최신정기보고서.png",
+          "type": "png"
+        },
+        {
+          "glob": "*.pdf",
+          "type": "pdf",
+          "minBytes": 10000
+        }
+      ]
+    }
+  }
+}

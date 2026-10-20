@@ -1,0 +1,70 @@
+{
+  "format": "web-rpa-set",
+  "formatVersion": 1,
+  "id": "tak002/smbs-month-end-fx",
+  "name": "서울외국환중개 통화별 직전 월 월말 환율",
+  "version": "1.0.0",
+  "summary": "엑셀의 통화 코드마다 서울외국환중개 월말 매매기준율 화면에서 직전 월 월말 환율을 읽어 결과 엑셀에 남기고, 조회 화면을 PDF로 저장한다. 고시하지 않는 통화(CNY)는 안내 문구를 남긴다.",
+  "author": {
+    "name": "Tak002",
+    "github": "Tak002"
+  },
+  "license": "CC0-1.0",
+  "tags": [
+    "환율",
+    "매매기준율",
+    "월말",
+    "서울외국환중개",
+    "PDF"
+  ],
+  "engine": {
+    "webRpa": ">=0.2.0 <0.3.0",
+    "recipeSchema": 1
+  },
+  "recipe": "recipe.json",
+  "sites": [
+    {
+      "origin": "http://www.smbs.biz",
+      "purpose": "통화별 월말 매매기준율 조회, 조회 화면 PDF 저장",
+      "login": "none"
+    }
+  ],
+  "columns": [
+    {
+      "name": "통화",
+      "required": true,
+      "example": "USD",
+      "help": "통화 코드 3글자(USD, JPY, EUR 등). 사이트의 통화 목록에 있는 통화만 된다.",
+      "personal": false
+    }
+  ],
+  "prompts": [],
+  "attachments": [],
+  "outputs": {
+    "values": [
+      "비고",
+      "직전월",
+      "직전월_매매기준율",
+      "최신_월",
+      "최신_매매기준율"
+    ],
+    "files": [
+      "{{통화}}_월말환율_{{sys:date:YYYYMMDD}}.pdf",
+      "{{통화}}_고시없음.png"
+    ]
+  },
+  "risk": [
+    "download",
+    "insecure-http"
+  ],
+  "pacing": {
+    "minRowIntervalMs": 3000,
+    "maxRowsPerRun": 50
+  },
+  "verified": {
+    "at": "2026-10-20",
+    "engine": "0.1.0",
+    "result": "5/5",
+    "by": "author"
+  }
+}

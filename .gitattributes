@@ -1,0 +1,7 @@
+* text=auto eol=lf
+# 세트 파일은 바이트 그대로 둔다 (sha256 이 바뀌지 않게, 예시 CSV 의 BOM·CRLF 유지)
+sets/** -text
+*.wrset binary
+*.png binary
+*.jpg binary
+*.xlsx binary
