@@ -1,0 +1,50 @@
+{
+  "sample": "input/sample.csv",
+  "totals": {
+    "ok": 5,
+    "failed": 0
+  },
+  "rows": {
+    "*": {
+      "status": "ok",
+      "values": {
+        "직전월": {
+          "regex": "^\\d{4}\\.\\d{2}$"
+        },
+        "직전월_매매기준율": {
+          "regex": "^[\\d,]+\\.\\d{2}$"
+        },
+        "최신_월": {
+          "regex": "^\\d{4}\\.\\d{2}$",
+          "optional": true
+        },
+        "최신_매매기준율": {
+          "regex": "^[\\d,]+\\.\\d{2}$",
+          "optional": true
+        }
+      },
+      "files": [
+        {
+          "glob": "*_월말환율_*.pdf",
+          "type": "pdf",
+          "minBytes": 5000
+        }
+      ]
+    },
+    "CNY": {
+      "status": "ok",
+      "replaceValues": true,
+      "values": {
+        "비고": {
+          "contains": "고시하지 않습니다"
+        }
+      },
+      "files": [
+        {
+          "glob": "CNY_고시없음.png",
+          "type": "png"
+        }
+      ]
+    }
+  }
+}
